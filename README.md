@@ -6,3 +6,14 @@
 [![goreportcard](https://goreportcard.com/badge/github.com/nektro/m3u8-dl)](https://goreportcard.com/report/github.com/nektro/m3u8-dl)
 
 m3u8-dl is a parallel HLS downloader.
+
+## Usage
+```
+Usage of ./m3u8-dl:
+  -concurrency int
+        Number of concurrent downloads to run (default 10)
+  -dir string
+        Path to directory to save .ts files to (default "./data")
+  -url string
+        URL to .m3u8 file to download
+```

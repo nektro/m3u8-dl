@@ -14,9 +14,9 @@ import (
 )
 
 func main() {
-	fM3u := flag.String("url", "", "")
-	fDir := flag.String("dir", "./data", "")
-	fCon := flag.Int("concurrency", 10, "")
+	fM3u := flag.String("url", "", "URL to .m3u8 file to download")
+	fDir := flag.String("dir", "./data", "Path to directory to save .ts files to")
+	fCon := flag.Int("concurrency", 10, "Number of concurrent downloads to run")
 	flag.Parse()
 
 	m3u := *fM3u
