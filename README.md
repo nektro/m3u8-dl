@@ -17,3 +17,13 @@ Usage of ./m3u8-dl:
   -url string
         URL to .m3u8 file to download
 ```
+
+## Download
+https://snapcraft.io/m3u8-dl
+
+## Built With
+- Golang 1.14
+- https://github.com/nektro/go-util
+
+## License
+MIT
