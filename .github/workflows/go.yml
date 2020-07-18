@@ -34,6 +34,9 @@ jobs:
 
     - name: Create a Release
       uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
         tag_name: ${ github.GITHUB_REF }
         release_name: ${ github.GITHUB_REF }
@@ -41,6 +44,10 @@ jobs:
 
     - name: Upload a Release Asset
       uses: actions/upload-release-asset@v1.0.2
+      id: upload-release-asset
+      env:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./m3u8-dl
         asset_name: m3u8-dl-linux-amd64
