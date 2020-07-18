@@ -1,0 +1,46 @@
+name: Go
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Set up Go 1.x
+      uses: actions/setup-go@v2
+      with:
+        go-version: ^1.14
+      id: go
+
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v2
+
+    - name: Get dependencies
+      run: |
+        go get -v -t -d ./...
+        if [ -f Gopkg.toml ]; then
+            curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+            dep ensure
+        fi
+
+    - name: Test
+      run: go test -v .
+
+    - name: Build
+      run: go build -v .
+
+    - name: Create a Release
+      uses: actions/create-release@v1
+      with:
+        tag_name: ${ github.GITHUB_REF }
+        release_name: ${ github.GITHUB_REF }
+        draft: true
+
+    - name: Upload a Release Asset
+      uses: actions/upload-release-asset@v1.0.2
+      with:
+        asset_path: ./m3u8-dl
+        asset_name: m3u8-dl-linux-amd64
