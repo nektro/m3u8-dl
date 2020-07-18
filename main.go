@@ -36,7 +36,9 @@ func main() {
 		mbpp.CreateJob("video: "+m3u, func(bar *mbpp.BarProxy) {
 			for _, item := range tss {
 				bar.AddToTotal(1)
-				go mbpp.CreateDownloadJob(sdir+"/"+item, dir+"/"+item, bar)
+				urlS := sdir + "/" + item
+				fname := urlS[strings.LastIndex(urlS, "/"):]
+				go mbpp.CreateDownloadJob(urlS, dir+"/"+fname, bar)
 			}
 		})
 
