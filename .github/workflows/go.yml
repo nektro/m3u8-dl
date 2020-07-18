@@ -38,8 +38,8 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
       with:
-        tag_name: ${{ github.GITHUB_REF }}
-        release_name: ${{ github.GITHUB_REF }}
+        tag_name: ${{ github.ref }}
+        release_name: ${{ github.ref }}
         draft: true
 
     - name: Upload a Release Asset
